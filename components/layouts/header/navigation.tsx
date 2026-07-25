@@ -1,9 +1,5 @@
 import Link from "next/link";
-
-interface Item {
-  title: string;
-  href: string;
-}
+import { Item } from "./navigation.types";
 
 const items: Item[] = [
   {
