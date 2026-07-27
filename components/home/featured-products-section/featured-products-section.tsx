@@ -1,5 +1,7 @@
+import ProductCard from "@/components/shared/product-card";
 import Container from "@/components/ui/container";
 import SectionTitle from "@/components/ui/section-title";
+import { mockProducts } from "@/mocks/products";
 
 export default function FeaturedProductsSection() {
   return (
@@ -11,11 +13,8 @@ export default function FeaturedProductsSection() {
         />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {Array.from({ length: 8 }).map((_, index) => (
-            <div
-              key={index}
-              className="h-80 rounded-xl border bg-gray-100 dark:bg-gray-800"
-            ></div>
+          {mockProducts.map((product) => (
+            <ProductCard key={product.id} {...product} />
           ))}
         </div>
       </Container>

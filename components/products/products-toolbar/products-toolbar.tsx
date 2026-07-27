@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Container from "@/components/ui/container";
 
 const sortOptions: SortOption[] = [
   {
@@ -27,26 +28,28 @@ export default function ProductsToolbar({
   totalProducts,
 }: ProductsToolbarProps) {
   return (
-    <div className="mt-8 flex flex-col gap-4 rounded-xl border border-border p-4 md:flex-row md:items-center md:justify-between">
-      <Input className="max-w-sm" placeholder="Search products..." />
+    <Container>
+      <div className="mt-8 flex flex-col gap-4 rounded-xl border border-border p-4 md:flex-row md:items-center md:justify-between">
+        <Input className="max-w-sm" placeholder="Search products..." />
 
-      <span className="text-sm text-gray-500">
-        Showing {totalProducts} products
-      </span>
+        <span className="text-sm text-muted-foreground">
+          Showing {totalProducts} products
+        </span>
 
-      <Select defaultValue="newest">
-        <SelectTrigger className="w-55">
-          <SelectValue placeholder="Sort by" />
-        </SelectTrigger>
+        <Select defaultValue="newest">
+          <SelectTrigger className="w-55">
+            <SelectValue placeholder="Sort by" />
+          </SelectTrigger>
 
-        <SelectContent>
-          {sortOptions.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
-              {option.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
+          <SelectContent>
+            {sortOptions.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    </Container>
   );
 }

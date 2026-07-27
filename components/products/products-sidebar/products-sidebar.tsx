@@ -2,6 +2,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import { CategoryItem } from "./products-sidebar.types";
 import { Label } from "@/components/ui/label";
+import Container from "@/components/ui/container";
 
 const categories: CategoryItem[] = [
   { id: 1, name: "Smartphones" },

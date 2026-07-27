@@ -3,6 +3,7 @@ import ProductPagination from "@/components/products/product-pagination";
 import ProductsHeader from "@/components/products/products-header";
 import ProductsSidebar from "@/components/products/products-sidebar";
 import ProductsToolbar from "@/components/products/products-toolbar";
+import Container from "@/components/ui/container";
 
 export default function ProductsPage() {
   return (
@@ -14,14 +15,16 @@ export default function ProductsPage() {
 
       <ProductsToolbar totalProducts={24} />
 
-      <div className="mt-10 grid gap-10 lg:grid-cols-[280px_1fr]">
-        <ProductsSidebar />
-        <div className="space-y-10">
-          <ProductGrid itemsCount={9} />
+      <Container>
+        <div className="mt-10 grid gap-10 lg:grid-cols-[280px_1fr]">
+          <ProductsSidebar />
+          <div className="space-y-10">
+            <ProductGrid itemsCount={9} />
 
-          <ProductPagination currentPage={1} totalPages={10} />
+            <ProductPagination currentPage={1} totalPages={10} />
+          </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

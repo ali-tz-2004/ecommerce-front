@@ -19,7 +19,7 @@ export default function Navigation() {
         <Link
           key={item.href}
           href={item.href}
-          className="text-sm font-medium text-gray-500 dark:text-gray-400 transition-colors hover:text-foreground"
+          className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
         >
           {item.title}
         </Link>
