@@ -1,9 +1,13 @@
+"use client";
+
 import ProductCard from "@/components/shared/product-card";
 import Container from "@/components/ui/container";
 import SectionTitle from "@/components/ui/section-title/section-title";
-import { mockProducts } from "@/mocks/products";
+import { usePopularProducts } from "@/hooks/queries/use-popular-products";
 
 export default function PopularProductsSection() {
+  const { data } = usePopularProducts();
+
   return (
     <section className="py-16">
       <Container>
@@ -12,7 +16,7 @@ export default function PopularProductsSection() {
           description="Most loved by our customers."
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {mockProducts.map((product) => (
+          {data?.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
         </div>

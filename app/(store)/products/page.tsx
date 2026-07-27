@@ -19,7 +19,7 @@ export default function ProductsPage() {
         <div className="mt-10 grid gap-10 lg:grid-cols-[280px_1fr]">
           <ProductsSidebar />
           <div className="space-y-10">
-            <ProductGrid itemsCount={9} />
+            <ProductGrid itemsCount={30} />
 
             <ProductPagination currentPage={1} totalPages={10} />
           </div>

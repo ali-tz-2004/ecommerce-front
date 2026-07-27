@@ -1,15 +1,12 @@
+"use client";
+
 import Container from "@/components/ui/container";
 import SectionTitle from "@/components/ui/section-title";
-import { Category } from "./categories.types";
-
-const categories: Category[] = [
-  { id: 1, name: "Phones" },
-  { id: 2, name: "Laptops" },
-  { id: 3, name: "Furniture" },
-  { id: 4, name: "Groceries" },
-];
+import { useCategories } from "@/hooks/queries/use-categories";
 
 export default function CategoriesSection() {
+  const { data } = useCategories();
+
   return (
     <section className="py-16">
       <Container>
@@ -19,9 +16,9 @@ export default function CategoriesSection() {
         />
 
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-          {categories.map((category) => (
+          {data?.map((category, index) => (
             <div
-              key={category.id}
+              key={index}
               className="rounded-xl border p-8 text-center transition hover:-translate-y-1 hover:shadow-lg"
             >
               {category.name}

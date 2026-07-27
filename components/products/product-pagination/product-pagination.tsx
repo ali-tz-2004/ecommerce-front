@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
-
 import { ProductPaginationProps } from "./product-pagination.types";
-import Container from "@/components/ui/container";
 
 export default function ProductPagination({
   currentPage,

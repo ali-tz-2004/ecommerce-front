@@ -2,20 +2,13 @@ import Container from "@/components/ui/container";
 
 import HeroContent from "./hero-content";
 import HeroImage from "./hero-image";
-import { HeroData } from "./hero.types";
-
-const hero: HeroData = {
-  title: "Discover Your Next Favorite Product",
-  subtitle: "Explore thousands of premium products with modern design.",
-  buttonText: "Shop Now",
-};
 
 export default function HeroSection() {
   return (
-    <section className="py-20">
+    <section className="overflow-hidden py-24">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-2">
-          <HeroContent hero={hero} />
+        <div className="grid items-center gap-20 lg:grid-cols-[1fr_1.2fr]">
+          <HeroContent />
 
           <HeroImage />
         </div>

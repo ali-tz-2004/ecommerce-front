@@ -1,22 +1,35 @@
+import { ArrowRight } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
-import { HeroData } from "./hero.types";
 
-interface HeroContentProps {
-  hero: HeroData;
-}
-
-export default function HeroContent({ hero }: HeroContentProps) {
+export default function HeroContent() {
   return (
-    <div className="space-y-6">
-      <span className="text-sm font-semibold uppercase tracking-widest text-primary">
+    <div className="max-w-xl">
+      <span className="rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em]">
         New Collection
       </span>
 
-      <h1 className="text-5xl font-bold leading-tight">{hero.title}</h1>
+      <h1 className="mt-8 text-6xl font-black leading-tight">
+        Discover Premium
+        <br />
+        Tech Products
+      </h1>
 
-      <p className="text-lg text-muted-foreground">{hero.subtitle}</p>
+      <p className="mt-6 text-lg text-muted-foreground">
+        Browse thousands of carefully selected products with modern design,
+        premium quality and fast delivery.
+      </p>
 
-      <Button size="lg">{hero.buttonText}</Button>
+      <div className="mt-10 flex gap-4">
+        <Button size="lg">
+          Shop Now
+          <ArrowRight className="ml-2 size-4" />
+        </Button>
+
+        <Button variant="outline" size="lg">
+          Browse Products
+        </Button>
+      </div>
     </div>
   );
 }
