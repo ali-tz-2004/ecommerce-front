@@ -1,4 +1,4 @@
-export interface ProductPaginationProps {
+export interface ProductsPaginationProps {
   currentPage: number;
   totalPages: number;
 }

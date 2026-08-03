@@ -1,5 +1,5 @@
-import ProductGrid from "@/components/products/product-grid";
-import ProductPagination from "@/components/products/product-pagination";
+import ProductGrid from "@/components/products/products-grid";
+import ProductPagination from "@/components/products/products-pagination";
 import ProductsHeader from "@/components/products/products-header";
 import ProductsSidebar from "@/components/products/products-sidebar";
 import ProductsToolbar from "@/components/products/products-toolbar";

@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { ProductPaginationProps } from "./product-pagination.types";
+import { ProductsPaginationProps } from "./products-pagination.types";
 
-export default function ProductPagination({
+export default function ProductsPagination({
   currentPage,
   totalPages,
-}: ProductPaginationProps) {
+}: ProductsPaginationProps) {
   return (
     <div className="flex items-center justify-center gap-3">
       <Button variant="outline">Previous</Button>
