@@ -1,3 +1,4 @@
+import ProductCardPrice from "@/components/shared/product-card/product-card-price";
 import ProductCardRating from "@/components/shared/product-card/product-card-rating";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -17,7 +18,10 @@ export default function ProductInfo({ data }: ProductInfoProps) {
       <p className="text-muted-foreground">{data.description}</p>
 
       <div className="flex items-center gap-3">
-        <span className="text-3xl font-bold">${data.price}</span>
+        <ProductCardPrice
+          price={data.price}
+          discountPercentage={data.discountPercentage}
+        />
 
         {data.discountPercentage > 0 && (
           <Badge variant="destructive">

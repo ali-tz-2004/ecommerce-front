@@ -6,6 +6,7 @@ import ProductCardPrice from "./product-card-price";
 import ProductCardRating from "./product-card-rating";
 import { ProductCardProps } from "./product-card.types";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 
 export default function ProductCard({
   id,
@@ -27,9 +28,7 @@ export default function ProductCard({
 
       <Link href={`/products/${id}`}>
         <CardContent className="space-y-3 pt-5">
-          <p className="text-xs uppercase tracking-wide text-muted-foreground">
-            {category}
-          </p>
+          <Badge className="w-fit">{category}</Badge>
 
           <h3 className="line-clamp-2 font-semibold">{title}</h3>
 
