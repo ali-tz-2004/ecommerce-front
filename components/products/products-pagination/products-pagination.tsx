@@ -1,19 +1,78 @@
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { ProductsPaginationProps } from "./products-pagination.types";
+
+const PAGE_SIZE_OPTIONS = [12, 24, 48];
 
 export default function ProductsPagination({
   currentPage,
   totalPages,
+  pageSize,
+  totalProducts,
+  onPageChange,
+  onPageSizeChange,
 }: ProductsPaginationProps) {
-  return (
-    <div className="flex items-center justify-center gap-3">
-      <Button variant="outline">Previous</Button>
+  const startItem = (currentPage - 1) * pageSize + 1;
+  const endItem = Math.min(currentPage * pageSize, totalProducts);
 
-      <span className="text-sm font-medium text-muted-foreground">
-        Page {currentPage} of {totalPages}
+  const canGoPrevious = currentPage > 1;
+  const canGoNext = currentPage < totalPages;
+
+  return (
+    <div className="flex flex-col gap-6 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-center gap-3">
+        <span className="text-sm text-muted-foreground">Products per page</span>
+
+        <Select
+          value={String(pageSize)}
+          onValueChange={(value) => onPageSizeChange(Number(value))}
+        >
+          <SelectTrigger className="w-20">
+            <SelectValue />
+          </SelectTrigger>
+
+          <SelectContent>
+            {PAGE_SIZE_OPTIONS.map((size) => (
+              <SelectItem key={size} value={String(size)}>
+                {size}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <span className="text-sm text-muted-foreground">
+        Showing {startItem}-{endItem} of {totalProducts}
       </span>
 
-      <Button variant="outline">Next</Button>
+      <div className="flex items-center gap-3">
+        <Button
+          variant="outline"
+          disabled={!canGoPrevious}
+          onClick={() => onPageChange(currentPage - 1)}
+        >
+          Previous
+        </Button>
+
+        <span className="text-sm font-medium whitespace-nowrap">
+          Page {currentPage} of {totalPages}
+        </span>
+
+        <Button
+          variant="outline"
+          disabled={!canGoNext}
+          onClick={() => onPageChange(currentPage + 1)}
+        >
+          Next
+        </Button>
+      </div>
     </div>
   );
 }

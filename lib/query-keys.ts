@@ -1,6 +1,7 @@
 export const QUERY_KEYS = {
   PRODUCTS: ["products"] as const,
-  PRODUCTS_LIMIT: (limit?: number) => ["products", limit] as const,
+  PRODUCTS_LIMIT: (limit?: number, skip?: number) =>
+    ["products", limit, skip] as const,
 
   PRODUCT: (id: number) => ["product", id] as const,
 

@@ -1,3 +1,5 @@
+import { ProductsResponse } from "@/types/product";
+
 export interface ProductsGridProps {
-  itemsCount: number;
+  data: ProductsResponse;
 }
