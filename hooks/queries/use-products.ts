@@ -5,11 +5,12 @@ import { QUERY_KEYS } from "@/lib/query-keys";
 interface UseProductsProps {
   limit?: number;
   skip?: number;
+  search?: string;
 }
 
-export function useProducts({ limit, skip }: UseProductsProps = {}) {
+export function useProducts({ limit, skip, search }: UseProductsProps = {}) {
   return useQuery({
-    queryKey: QUERY_KEYS.PRODUCTS_LIMIT(limit, skip),
-    queryFn: () => getProducts(limit, skip),
+    queryKey: QUERY_KEYS.PRODUCTS(limit, skip, search),
+    queryFn: () => getProducts(limit, skip, search),
   });
 }

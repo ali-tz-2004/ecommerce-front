@@ -1,5 +1,7 @@
+"use client";
+
+import Container from "@/components/ui/container";
 import { Input } from "@/components/ui/input";
-import { ProductsToolbarProps, SortOption } from "./products-toolbar.types";
 import {
   Select,
   SelectContent,
@@ -7,7 +9,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Container from "@/components/ui/container";
+
+import { ProductsToolbarProps, SortOption } from "./products-toolbar.types";
 
 const sortOptions: SortOption[] = [
   {
@@ -25,18 +28,22 @@ const sortOptions: SortOption[] = [
 ];
 
 export default function ProductsToolbar({
-  totalProducts,
+  search,
+  sort,
+  onSearchChange,
+  onSortChange,
 }: ProductsToolbarProps) {
   return (
     <Container>
       <div className="mt-8 flex flex-col gap-4 rounded-xl border border-border p-4 md:flex-row md:items-center md:justify-between">
-        <Input className="max-w-sm" placeholder="Search products..." />
+        <Input
+          value={search}
+          onChange={(event) => onSearchChange(event.target.value)}
+          className="max-w-sm"
+          placeholder="Search products..."
+        />
 
-        <span className="text-sm text-muted-foreground">
-          Showing {totalProducts} products
-        </span>
-
-        <Select defaultValue="newest">
+        <Select value={sort} onValueChange={onSortChange}>
           <SelectTrigger className="w-55">
             <SelectValue placeholder="Sort by" />
           </SelectTrigger>

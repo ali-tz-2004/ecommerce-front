@@ -1,8 +1,13 @@
+export type SortOptionValue = "newest" | "price-asc" | "price-desc" | null;
+
 export interface SortOption {
   label: string;
-  value: string;
+  value: SortOptionValue;
 }
 
 export interface ProductsToolbarProps {
-  totalProducts: number;
+  search: string;
+  sort: SortOptionValue;
+  onSearchChange: (value: string) => void;
+  onSortChange: (value: SortOptionValue) => void;
 }

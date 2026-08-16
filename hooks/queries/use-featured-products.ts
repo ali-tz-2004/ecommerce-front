@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export function useFeaturedProducts() {
   return useQuery({
-    queryKey: QUERY_KEYS.PRODUCTS,
+    queryKey: QUERY_KEYS.FEATURED_PRODUCTS,
     queryFn: async () => {
       const response = await getProducts();
       return response.products
