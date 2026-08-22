@@ -14,16 +14,16 @@ import { ProductsToolbarProps, SortOption } from "./products-toolbar.types";
 
 const sortOptions: SortOption[] = [
   {
-    label: "Newest",
-    value: "newest",
+    label: "Default",
+    value: "default",
   },
   {
-    label: "Price: Low to High",
-    value: "price-asc",
+    label: "Name: A to Z",
+    value: "title-asc",
   },
   {
-    label: "Price: High to Low",
-    value: "price-desc",
+    label: "Name: Z to A",
+    value: "title-desc",
   },
 ];
 
@@ -45,7 +45,9 @@ export default function ProductsToolbar({
 
         <Select value={sort} onValueChange={onSortChange}>
           <SelectTrigger className="w-55">
-            <SelectValue placeholder="Sort by" />
+            <SelectValue placeholder="Sort by">
+              {sortOptions.find((option) => option.value === sort)?.label}
+            </SelectValue>
           </SelectTrigger>
 
           <SelectContent>

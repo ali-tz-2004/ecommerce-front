@@ -7,13 +7,13 @@ import ProductGrid from "../products-grid";
 import ProductPagination from "../products-pagination";
 import { useProducts } from "@/hooks/queries/use-products";
 import { useState } from "react";
-import { SortOptionValue } from "../products-toolbar/products-toolbar.types";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useCategories } from "@/hooks/queries/use-categories";
+import { SortOptionValue } from "@/types/product-sort";
 
 export default function ProductsPage() {
   const [search, setSearch] = useState("");
-  const [sort, setSort] = useState<SortOptionValue>("newest");
+  const [sort, setSort] = useState<SortOptionValue>("default");
   const [categories, setCategories] = useState<string[]>([]);
 
   const [page, setPage] = useState(1);
@@ -27,6 +27,7 @@ export default function ProductsPage() {
     limit,
     skip,
     search: debouncedSearch,
+    sort,
     categories,
   });
 

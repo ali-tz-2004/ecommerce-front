@@ -1,4 +1,4 @@
-export type SortOptionValue = "newest" | "price-asc" | "price-desc" | null;
+import { SortOptionValue } from "@/types/product-sort";
 
 export interface SortOption {
   label: string;
