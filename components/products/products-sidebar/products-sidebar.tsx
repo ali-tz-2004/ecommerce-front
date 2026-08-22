@@ -2,10 +2,31 @@
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { useCategories } from "@/hooks/queries/use-categories";
+import { ProductCategory } from "@/types/product-category";
 
-export default function ProductsSidebar() {
-  const { data } = useCategories();
+interface ProductsSidebarProps {
+  data: ProductCategory[];
+  selectedCategories: string[];
+  onCategoriesChange: (categories: string[]) => void;
+}
+
+export default function ProductsSidebar({
+  data,
+  selectedCategories,
+  onCategoriesChange,
+}: ProductsSidebarProps) {
+  const selectedCheckboxHandler = (
+    checked: boolean,
+    category: ProductCategory,
+  ) => {
+    if (checked) {
+      onCategoriesChange([...selectedCategories, category.slug]);
+    } else {
+      onCategoriesChange(
+        selectedCategories.filter((slug) => slug !== category.slug),
+      );
+    }
+  };
 
   return (
     <aside className="rounded-xl border border-border p-6">
@@ -14,7 +35,13 @@ export default function ProductsSidebar() {
       <div className="space-y-4">
         {data?.map((category, index) => (
           <div key={index} className="flex items-center gap-3">
-            <Checkbox id={`category-${index}`} />
+            <Checkbox
+              id={`category-${index}`}
+              checked={selectedCategories.includes(category.slug)}
+              onCheckedChange={(checked) =>
+                selectedCheckboxHandler(checked, category)
+              }
+            />
 
             <Label htmlFor={`category-${index}`} className="cursor-pointer">
               {category.name}

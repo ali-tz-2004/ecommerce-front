@@ -9,10 +9,12 @@ import { useProducts } from "@/hooks/queries/use-products";
 import { useState } from "react";
 import { SortOptionValue } from "../products-toolbar/products-toolbar.types";
 import { useDebounce } from "@/hooks/use-debounce";
+import { useCategories } from "@/hooks/queries/use-categories";
 
 export default function ProductsPage() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState<SortOptionValue>("newest");
+  const [categories, setCategories] = useState<string[]>([]);
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(12);
@@ -22,10 +24,13 @@ export default function ProductsPage() {
   const skip = (page - 1) * limit;
 
   const { data, isError, isFetching } = useProducts({
-    limit: limit,
-    skip: skip,
+    limit,
+    skip,
     search: debouncedSearch,
+    categories,
   });
+
+  const { data: categoriesData } = useCategories();
 
   if (isError) {
     return <div>Error loading products</div>;
@@ -53,7 +58,14 @@ export default function ProductsPage() {
 
       <Container>
         <div className="mt-10 grid gap-10 lg:grid-cols-[280px_1fr]">
-          <ProductsSidebar />
+          <ProductsSidebar
+            data={categoriesData ?? []}
+            selectedCategories={categories}
+            onCategoriesChange={(categories) => {
+              setCategories(categories);
+              setPage(1);
+            }}
+          />
           <div className="space-y-10 relative">
             {isFetching && (
               <div className="absolute inset-0 z-10 flex items-start justify-center bg-background/50 pt-20 backdrop-blur-sm">
