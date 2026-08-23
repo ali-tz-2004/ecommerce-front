@@ -6,18 +6,30 @@ import ProductsSidebar from "../products-sidebar";
 import ProductGrid from "../products-grid";
 import ProductPagination from "../products-pagination";
 import { useProducts } from "@/hooks/queries/use-products";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useCategories } from "@/hooks/queries/use-categories";
 import { SortOptionValue } from "@/types/product-sort";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function ProductsPage() {
-  const [search, setSearch] = useState("");
-  const [sort, setSort] = useState<SortOptionValue>("default");
-  const [categories, setCategories] = useState<string[]>([]);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(12);
+  const [search, setSearch] = useState(searchParams.get("search") ?? "");
+
+  const [sort, setSort] = useState<SortOptionValue>(
+    (searchParams.get("sort") as SortOptionValue) ?? "default",
+  );
+
+  const [categories, setCategories] = useState<string[]>(
+    searchParams.get("categories")?.split(",").filter(Boolean) ?? [],
+  );
+
+  const [page, setPage] = useState(Number(searchParams.get("page")) || 1);
+
+  const [limit, setLimit] = useState(Number(searchParams.get("limit")) || 12);
 
   const debouncedSearch = useDebounce(search, 500);
 
@@ -32,6 +44,37 @@ export default function ProductsPage() {
   });
 
   const { data: categoriesData } = useCategories();
+
+  const updateQueryParams = useCallback(
+    (updates: Record<string, string | null>) => {
+      const params = new URLSearchParams(window.location.search);
+
+      Object.entries(updates).forEach(([key, value]) => {
+        if (value) {
+          params.set(key, value);
+        } else {
+          params.delete(key);
+        }
+      });
+
+      router.replace(`${pathname}?${params.toString()}`);
+    },
+    [router, pathname],
+  );
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const currentSearch = params.get("search") ?? "";
+
+    if (currentSearch === debouncedSearch) {
+      return;
+    }
+
+    updateQueryParams({
+      search: debouncedSearch || null,
+      page: "1",
+    });
+  }, [debouncedSearch, updateQueryParams]);
 
   if (isError) {
     return <div>Error loading products</div>;
@@ -54,6 +97,10 @@ export default function ProductsPage() {
         onSortChange={(value) => {
           setSort(value);
           setPage(1);
+          updateQueryParams({
+            sort: value === "default" ? null : value,
+            page: "1",
+          });
         }}
       />
 
@@ -65,6 +112,10 @@ export default function ProductsPage() {
             onCategoriesChange={(categories) => {
               setCategories(categories);
               setPage(1);
+              updateQueryParams({
+                categories: categories.length ? categories.join(",") : null,
+                page: "1",
+              });
             }}
           />
           <div className="space-y-10 relative">
@@ -88,6 +139,10 @@ export default function ProductsPage() {
                   onPageSizeChange={(size) => {
                     setLimit(size);
                     setPage(1);
+
+                    updateQueryParams({
+                      page: String(page),
+                    });
                   }}
                 />
               </>
