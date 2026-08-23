@@ -37,38 +37,40 @@ export default function ProductsToolbar({
   onClearFilters,
 }: ProductsToolbarProps) {
   return (
-    <Container>
-      <div className="mt-8 flex flex-col gap-4 rounded-xl border border-border p-4 md:flex-row md:items-center md:justify-between">
-        <Input
-          value={search}
-          onChange={(event) => onSearchChange(event.target.value)}
-          className="max-w-sm"
-          placeholder="Search products..."
-        />
+    <div className="sticky top-16 z-40 bg-background/80 backdrop-blur">
+      <Container>
+        <div className="mt-8 flex flex-col gap-4 rounded-xl border border-border p-4 md:flex-row md:items-center md:justify-between">
+          <Input
+            value={search}
+            onChange={(event) => onSearchChange(event.target.value)}
+            className="max-w-sm"
+            placeholder="Search products..."
+          />
 
-        <div className="flex justify-center items-center gap-2">
-          <Select value={sort} onValueChange={onSortChange}>
-            <SelectTrigger className="w-55">
-              <SelectValue placeholder="Sort by">
-                {sortOptions.find((option) => option.value === sort)?.label}
-              </SelectValue>
-            </SelectTrigger>
+          <div className="flex justify-center items-center gap-2">
+            <Select value={sort} onValueChange={onSortChange}>
+              <SelectTrigger className="w-55">
+                <SelectValue placeholder="Sort by">
+                  {sortOptions.find((option) => option.value === sort)?.label}
+                </SelectValue>
+              </SelectTrigger>
 
-            <SelectContent>
-              {sortOptions.map((option) => (
-                <SelectItem key={option.value} value={option.value}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {hasActiveFilters && (
-            <Button type="button" variant="outline" onClick={onClearFilters}>
-              Clear all
-            </Button>
-          )}
+              <SelectContent>
+                {sortOptions.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {hasActiveFilters && (
+              <Button type="button" variant="outline" onClick={onClearFilters}>
+                Clear all
+              </Button>
+            )}
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }
