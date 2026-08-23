@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 
 import { ProductsToolbarProps, SortOption } from "./products-toolbar.types";
+import { Button } from "@/components/ui/button";
 
 const sortOptions: SortOption[] = [
   {
@@ -30,8 +31,10 @@ const sortOptions: SortOption[] = [
 export default function ProductsToolbar({
   search,
   sort,
+  hasActiveFilters,
   onSearchChange,
   onSortChange,
+  onClearFilters,
 }: ProductsToolbarProps) {
   return (
     <Container>
@@ -43,21 +46,28 @@ export default function ProductsToolbar({
           placeholder="Search products..."
         />
 
-        <Select value={sort} onValueChange={onSortChange}>
-          <SelectTrigger className="w-55">
-            <SelectValue placeholder="Sort by">
-              {sortOptions.find((option) => option.value === sort)?.label}
-            </SelectValue>
-          </SelectTrigger>
+        <div className="flex justify-center items-center gap-2">
+          <Select value={sort} onValueChange={onSortChange}>
+            <SelectTrigger className="w-55">
+              <SelectValue placeholder="Sort by">
+                {sortOptions.find((option) => option.value === sort)?.label}
+              </SelectValue>
+            </SelectTrigger>
 
-          <SelectContent>
-            {sortOptions.map((option) => (
-              <SelectItem key={option.value} value={option.value}>
-                {option.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+            <SelectContent>
+              {sortOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {hasActiveFilters && (
+            <Button type="button" variant="outline" onClick={onClearFilters}>
+              Clear all
+            </Button>
+          )}
+        </div>
       </div>
     </Container>
   );

@@ -8,6 +8,8 @@ export interface SortOption {
 export interface ProductsToolbarProps {
   search: string;
   sort: SortOptionValue;
+  hasActiveFilters: boolean;
   onSearchChange: (value: string) => void;
   onSortChange: (value: SortOptionValue) => void;
+  onClearFilters: () => void;
 }

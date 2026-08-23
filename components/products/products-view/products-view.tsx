@@ -11,6 +11,7 @@ import { useDebounce } from "@/hooks/use-debounce";
 import { useCategories } from "@/hooks/queries/use-categories";
 import { SortOptionValue } from "@/types/product-sort";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import ProductsGridSkeleton from "../products-grid/product-grid-skeleton";
 
 export default function ProductsPage() {
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function ProductsPage() {
 
   const skip = (page - 1) * limit;
 
-  const { data, isError, isFetching } = useProducts({
+  const { data, isError, isLoading } = useProducts({
     limit,
     skip,
     search: debouncedSearch,
@@ -43,7 +44,8 @@ export default function ProductsPage() {
     categories,
   });
 
-  const { data: categoriesData } = useCategories();
+  const { data: categoriesData, isLoading: isCategoriesLoading } =
+    useCategories();
 
   const updateQueryParams = useCallback(
     (updates: Record<string, string | null>) => {
@@ -57,10 +59,24 @@ export default function ProductsPage() {
         }
       });
 
-      router.replace(`${pathname}?${params.toString()}`);
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     },
     [router, pathname],
   );
+
+  const onClearFiler = () => {
+    setSearch("");
+    setSort("default");
+    setCategories([]);
+    setPage(1);
+
+    updateQueryParams({
+      search: null,
+      sort: null,
+      categories: null,
+      page: "1",
+    });
+  };
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -90,6 +106,9 @@ export default function ProductsPage() {
       <ProductsToolbar
         search={search}
         sort={sort}
+        hasActiveFilters={
+          Boolean(search) || sort !== "default" || categories.length > 0
+        }
         onSearchChange={(value) => {
           setSearch(value);
           setPage(1);
@@ -102,12 +121,14 @@ export default function ProductsPage() {
             page: "1",
           });
         }}
+        onClearFilters={() => onClearFiler()}
       />
 
       <Container>
         <div className="mt-10 grid gap-10 lg:grid-cols-[280px_1fr]">
           <ProductsSidebar
             data={categoriesData ?? []}
+            isLoading={isCategoriesLoading}
             selectedCategories={categories}
             onCategoriesChange={(categories) => {
               setCategories(categories);
@@ -118,34 +139,41 @@ export default function ProductsPage() {
               });
             }}
           />
-          <div className="space-y-10 relative">
-            {isFetching && (
-              <div className="absolute inset-0 z-10 flex items-start justify-center bg-background/50 pt-20 backdrop-blur-sm">
-                <span className="text-sm text-muted-foreground">
-                  Loading products...
-                </span>
-              </div>
-            )}
-            {data && (
-              <>
-                <ProductGrid data={data} />
 
-                <ProductPagination
-                  currentPage={page}
-                  totalPages={Math.ceil(data.total / limit)}
-                  pageSize={limit}
-                  totalProducts={data.total}
-                  onPageChange={setPage}
-                  onPageSizeChange={(size) => {
-                    setLimit(size);
-                    setPage(1);
+          <div className="space-y-10">
+            {isLoading ? (
+              <ProductsGridSkeleton count={limit} />
+            ) : (
+              data && (
+                <>
+                  <ProductGrid data={data} />
 
-                    updateQueryParams({
-                      page: String(page),
-                    });
-                  }}
-                />
-              </>
+                  {data.total > 0 && (
+                    <ProductPagination
+                      currentPage={page}
+                      totalPages={Math.ceil(data.total / limit)}
+                      pageSize={limit}
+                      totalProducts={data.total}
+                      onPageChange={(page) => {
+                        setPage(page);
+
+                        updateQueryParams({
+                          page: String(page),
+                        });
+                      }}
+                      onPageSizeChange={(size) => {
+                        setLimit(size);
+                        setPage(1);
+
+                        updateQueryParams({
+                          limit: String(size),
+                          page: "1",
+                        });
+                      }}
+                    />
+                  )}
+                </>
+              )
             )}
           </div>
         </div>
