@@ -8,41 +8,33 @@ import { ProductCardProps } from "./product-card.types";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 
-export default function ProductCard({
-  id,
-  title,
-  category,
-  thumbnail,
-  price,
-  rating,
-  discountPercentage,
-}: ProductCardProps) {
+export default function ProductCard({ data }: ProductCardProps) {
   return (
     <Card className="group overflow-hidden transition-shadow hover:shadow-lg">
       <ProductCardImage
-        id={id}
-        title={title}
-        thumbnail={thumbnail}
-        discountPercentage={discountPercentage}
+        id={data.id}
+        title={data.title}
+        thumbnail={data.thumbnail}
+        discountPercentage={data.discountPercentage}
       />
 
-      <Link href={`/products/${id}`}>
+      <Link href={`/products/${data.id}`}>
         <CardContent className="space-y-3 pt-5">
-          <Badge className="w-fit">{category}</Badge>
+          <Badge className="w-fit">{data.category}</Badge>
 
-          <h3 className="line-clamp-2 font-semibold">{title}</h3>
+          <h3 className="line-clamp-2 font-semibold">{data.title}</h3>
 
-          <ProductCardRating rating={rating} />
+          <ProductCardRating rating={data.rating} />
 
           <ProductCardPrice
-            price={price}
-            discountPercentage={discountPercentage}
+            price={data.price}
+            discountPercentage={data.discountPercentage}
           />
         </CardContent>
       </Link>
 
       <CardFooter>
-        <ProductCardActions />
+        <ProductCardActions product={data} />
       </CardFooter>
     </Card>
   );

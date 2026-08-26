@@ -1,3 +1,4 @@
+import ProductCardActions from "@/components/shared/product-card/product-card-actions";
 import ProductCardPrice from "@/components/shared/product-card/product-card-price";
 import ProductCardRating from "@/components/shared/product-card/product-card-rating";
 import { Badge } from "@/components/ui/badge";
@@ -36,9 +37,7 @@ export default function ProductInfo({ data }: ProductInfoProps) {
         <span>Brand: {data.brand}</span>
       </div>
 
-      <Button size="lg" className="w-fit">
-        Add to Cart
-      </Button>
+      <ProductCardActions size="lg" product={data} className="w-fit" />
     </div>
   );
 }

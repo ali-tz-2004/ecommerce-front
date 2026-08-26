@@ -4,8 +4,8 @@ import { QUERY_KEYS } from "@/lib/query-keys";
 import { SortOptionValue } from "@/types/product-sort";
 
 interface UseProductsProps {
-  limit?: number;
-  skip?: number;
+  limit: number;
+  skip: number;
   search?: string;
   sort?: SortOptionValue;
   categories: string[];

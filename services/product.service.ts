@@ -4,8 +4,8 @@ import { API_ENDPOINTS } from "./api/endpoints";
 import { SortOptionValue } from "@/types/product-sort";
 
 export async function getProducts(
-  limit = 30,
-  skip = 0,
+  limit: number,
+  skip: number,
   search?: string,
   sort?: SortOptionValue,
   categories: string[] = [],

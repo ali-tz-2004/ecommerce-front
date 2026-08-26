@@ -21,7 +21,7 @@ export default function PopularProductsSection() {
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {data?.map((product) => (
-              <ProductCard key={product.id} {...product} />
+              <ProductCard key={product.id} data={product} />
             ))}
           </div>
         )}
