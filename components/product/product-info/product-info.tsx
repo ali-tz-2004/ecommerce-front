@@ -2,7 +2,6 @@ import ProductCardActions from "@/components/shared/product-card/product-card-ac
 import ProductCardPrice from "@/components/shared/product-card/product-card-price";
 import ProductCardRating from "@/components/shared/product-card/product-card-rating";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Product } from "@/types/product";
 
 interface ProductInfoProps {
