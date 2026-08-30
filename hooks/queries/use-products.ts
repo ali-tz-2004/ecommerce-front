@@ -19,7 +19,7 @@ export function useProducts({
   categories,
 }: UseProductsProps) {
   return useQuery({
-    queryKey: QUERY_KEYS.PRODUCTS(limit, skip, search, sort, categories),
+    queryKey: QUERY_KEYS.PRODUCTS_LIST(limit, skip, search, sort, categories),
     queryFn: () => getProducts(limit, skip, search, sort, categories),
   });
 }

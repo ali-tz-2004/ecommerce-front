@@ -1,7 +1,8 @@
 import { SortOptionValue } from "@/types/product-sort";
 
 export const QUERY_KEYS = {
-  PRODUCTS: (
+  PRODUCTS: ["products"] as const,
+  PRODUCTS_LIST: (
     limit?: number,
     skip?: number,
     search?: string,
@@ -12,8 +13,4 @@ export const QUERY_KEYS = {
   PRODUCT: (id: number) => ["product", id] as const,
 
   CATEGORIES: ["categories"] as const,
-
-  FEATURED_PRODUCTS: ["feature-products"] as const,
-
-  POPULAR_PRODUCTS: ["popular-products"] as const,
 };

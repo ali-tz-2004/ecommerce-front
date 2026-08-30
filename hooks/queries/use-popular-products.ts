@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export function usePopularProducts() {
   return useQuery({
-    queryKey: QUERY_KEYS.POPULAR_PRODUCTS,
+    queryKey: QUERY_KEYS.PRODUCTS,
     queryFn: async () => {
       const response = await getProducts();
 
