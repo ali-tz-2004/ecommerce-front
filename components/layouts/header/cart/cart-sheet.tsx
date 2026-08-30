@@ -13,6 +13,7 @@ import { useCartStore } from "@/stores/cart/cart-store";
 import CartSheetItem from "./cart-sheet-item";
 import { CartSheetSummary } from "./cart-sheet-summary";
 import { CartSheetEmpty } from "./cart-sheet-empty";
+import { calculateDiscountPrice } from "@/components/shared/product-card/product-card.utils";
 
 export default function CartSheet() {
   const items = useCartStore((state) => state.items);
@@ -20,7 +21,10 @@ export default function CartSheet() {
   const cartCount = items.reduce((total, item) => total + item.quantity, 0);
 
   const subtotal = items.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) =>
+      total +
+      calculateDiscountPrice(item.price, item.discountPercentage) *
+        item.quantity,
     0,
   );
 

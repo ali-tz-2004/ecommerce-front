@@ -13,7 +13,7 @@ import { SortOptionValue } from "@/types/product-sort";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ProductsGridSkeleton from "../products-grid/product-grid-skeleton";
 
-export default function ProductsPage() {
+export default function ProductsView() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
