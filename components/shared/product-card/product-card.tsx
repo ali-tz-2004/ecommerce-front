@@ -21,10 +21,16 @@ export default function ProductCard({ data }: ProductCardProps) {
 
           <ProductCardRating rating={data.rating} />
 
-          <ProductCardPrice
-            price={data.price}
-            discountPercentage={data.discountPercentage}
-          />
+          <div className="flex items-center justify-between">
+            <ProductCardPrice
+              price={data.price}
+              discountPercentage={data.discountPercentage}
+            />
+
+            <span className="text-xs text-muted-foreground">
+              {data.stock} in stock
+            </span>
+          </div>
         </CardContent>
       </Link>
 
