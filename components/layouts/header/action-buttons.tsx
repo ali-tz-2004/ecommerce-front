@@ -1,12 +1,18 @@
 "use client";
-import { Heart, Moon } from "lucide-react";
 
+import { Heart, Moon } from "lucide-react";
 import ShoppingCard from "./cart/cart-sheet";
 import Link from "next/link";
 import { useFavoriteStore } from "@/stores/favorite/favorite-store";
+import { useTheme } from "next-themes";
 
 export default function ActionButtons() {
   const favoriteCount = useFavoriteStore((state) => state.items.length);
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
     <div className="flex items-center gap-2">
@@ -14,6 +20,7 @@ export default function ActionButtons() {
         type="button"
         className="rounded-lg p-2 transition hover:bg-muted"
         aria-label="Toggle theme"
+        onClick={toggleTheme}
       >
         <Moon size={20} />
       </button>
