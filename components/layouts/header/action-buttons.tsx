@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, Moon } from "lucide-react";
+import { Heart, Moon, Sun } from "lucide-react";
 import ShoppingCard from "./cart/cart-sheet";
 import Link from "next/link";
 import { useFavoriteStore } from "@/stores/favorite/favorite-store";
@@ -22,7 +22,7 @@ export default function ActionButtons() {
         aria-label="Toggle theme"
         onClick={toggleTheme}
       >
-        <Moon size={20} />
+        {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
       </button>
 
       <Link

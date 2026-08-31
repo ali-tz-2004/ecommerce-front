@@ -6,6 +6,7 @@ import { Product } from "@/types/product";
 import { cn } from "@/lib/utils";
 import QuantitySelector from "../quantity-selector";
 import RemoveButton from "../remove-button";
+import PrimaryActionButton from "../primary-action-button";
 
 export type SizeButton =
   | "default"
@@ -39,13 +40,13 @@ export default function ProductCardActions({
 
   if (!item) {
     return (
-      <Button
+      <PrimaryActionButton
         size={size}
         className={cn("w-full", className)}
         onClick={() => addToCart(product)}
       >
         Add to Cart
-      </Button>
+      </PrimaryActionButton>
     );
   }
 

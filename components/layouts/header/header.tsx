@@ -1,6 +1,5 @@
 import Logo from "./logo";
 import Navigation from "./navigation";
-import SearchBar from "./search-bar";
 import ActionButtons from "./action-buttons";
 
 export default function Header() {
@@ -11,9 +10,7 @@ export default function Header() {
 
         <Navigation />
 
-        <div className="flex-1">
-          <SearchBar />
-        </div>
+        <div className="flex-1" />
 
         <ActionButtons />
       </div>
