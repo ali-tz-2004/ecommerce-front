@@ -11,12 +11,7 @@ import { Badge } from "@/components/ui/badge";
 export default function ProductCard({ data }: ProductCardProps) {
   return (
     <Card className="group overflow-hidden transition-shadow hover:shadow-lg">
-      <ProductCardImage
-        id={data.id}
-        title={data.title}
-        thumbnail={data.thumbnail}
-        discountPercentage={data.discountPercentage}
-      />
+      <ProductCardImage data={data} />
 
       <Link href={`/products/${data.id}`}>
         <CardContent className="space-y-3 pt-5">
