@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
+import PrimaryActionButton from "@/components/shared/primary-action-button";
 
 export default function ProductDetailsNotFound() {
   return (
@@ -16,9 +16,9 @@ export default function ProductDetailsNotFound() {
             }
           </p>
 
-          <Button className="mt-6">
+          <PrimaryActionButton className="mt-6">
             <Link href="/products">Back to Products</Link>
-          </Button>
+          </PrimaryActionButton>
         </div>
       </Container>
     </section>

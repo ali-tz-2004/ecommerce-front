@@ -14,8 +14,8 @@ export default function PrimaryActionButton({
       variant="outline"
       className={cn(
         "border-primary/30 transition-colors",
-        "hover:bg-primary hover:text-primary-foreground",
         "dark:hover:text-foreground",
+        "hover:cursor-pointer",
         className,
       )}
       {...props}

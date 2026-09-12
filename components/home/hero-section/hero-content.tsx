@@ -1,7 +1,6 @@
 import { ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import PrimaryActionButton from "@/components/shared/primary-action-button";
 
 export default function HeroContent() {

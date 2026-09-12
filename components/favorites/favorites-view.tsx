@@ -4,9 +4,9 @@ import Link from "next/link";
 import { Heart } from "lucide-react";
 
 import Container from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/shared/product-card";
 import { useFavoriteStore } from "@/stores/favorite/favorite-store";
+import PrimaryActionButton from "../shared/primary-action-button";
 
 export default function FavoritesView() {
   const items = useFavoriteStore((state) => state.items);
@@ -27,7 +27,7 @@ export default function FavoritesView() {
             </p>
 
             <Link href="/products" className="mt-6">
-              <Button>Browse Products</Button>
+              <PrimaryActionButton>Browse Products</PrimaryActionButton>
             </Link>
           </div>
         </Container>

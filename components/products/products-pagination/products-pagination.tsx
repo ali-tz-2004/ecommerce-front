@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -8,6 +7,7 @@ import {
 } from "@/components/ui/select";
 
 import { ProductsPaginationProps } from "./products-pagination.types";
+import PrimaryActionButton from "@/components/shared/primary-action-button";
 
 const PAGE_SIZE_OPTIONS = [12, 24, 48];
 
@@ -53,25 +53,23 @@ export default function ProductsPagination({
       </span>
 
       <div className="flex items-center gap-3">
-        <Button
-          variant="outline"
+        <PrimaryActionButton
           disabled={!canGoPrevious}
           onClick={() => onPageChange(currentPage - 1)}
         >
           Previous
-        </Button>
+        </PrimaryActionButton>
 
         <span className="text-sm font-medium whitespace-nowrap">
           Page {currentPage} of {totalPages}
         </span>
 
-        <Button
-          variant="outline"
+        <PrimaryActionButton
           disabled={!canGoNext}
           onClick={() => onPageChange(currentPage + 1)}
         >
           Next
-        </Button>
+        </PrimaryActionButton>
       </div>
     </div>
   );

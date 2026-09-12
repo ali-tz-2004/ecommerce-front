@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import PrimaryActionButton from "@/components/shared/primary-action-button";
 import Container from "@/components/ui/container";
 
 interface ProductDetailsErrorProps {
@@ -19,9 +19,9 @@ export default function ProductDetailsError({
           </p>
 
           {onRetry && (
-            <Button onClick={onRetry} className="mt-6">
+            <PrimaryActionButton onClick={onRetry} className="mt-6">
               Try Again
-            </Button>
+            </PrimaryActionButton>
           )}
         </div>
       </Container>

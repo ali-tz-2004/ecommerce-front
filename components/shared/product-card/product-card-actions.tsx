@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/stores/cart/cart-store";
 import { Product } from "@/types/product";
 import { cn } from "@/lib/utils";
@@ -51,7 +50,7 @@ export default function ProductCardActions({
   }
 
   return (
-    <>
+    <div className="flex w-fit items-center gap-2">
       <QuantitySelector
         quantity={item.quantity}
         onIncrease={() => incrementQuantity(item.id)}
@@ -62,6 +61,6 @@ export default function ProductCardActions({
         onClick={() => removeFromCart(item.id)}
         label={`Remove ${item.title}`}
       />
-    </>
+    </div>
   );
 }

@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 
 import { ProductsToolbarProps, SortOption } from "./products-toolbar.types";
-import { Button } from "@/components/ui/button";
+import PrimaryActionButton from "@/components/shared/primary-action-button";
 
 const sortOptions: SortOption[] = [
   {
@@ -64,9 +64,9 @@ export default function ProductsToolbar({
               </SelectContent>
             </Select>
             {hasActiveFilters && (
-              <Button type="button" variant="outline" onClick={onClearFilters}>
+              <PrimaryActionButton onClick={onClearFilters}>
                 Clear all
-              </Button>
+              </PrimaryActionButton>
             )}
           </div>
         </div>

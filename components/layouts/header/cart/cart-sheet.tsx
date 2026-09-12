@@ -14,8 +14,10 @@ import CartSheetItem from "./cart-sheet-item";
 import { CartSheetSummary } from "./cart-sheet-summary";
 import { CartSheetEmpty } from "./cart-sheet-empty";
 import { calculateDiscountPrice } from "@/components/shared/product-card/product-card.utils";
+import { useState } from "react";
 
 export default function CartSheet() {
+  const [open, setOpen] = useState(false);
   const items = useCartStore((state) => state.items);
 
   const cartCount = items.reduce((total, item) => total + item.quantity, 0);
@@ -29,7 +31,7 @@ export default function CartSheet() {
   );
 
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
         className="relative rounded-lg p-2 transition hover:bg-muted "
         aria-label={`Shopping cart, ${cartCount} items`}
@@ -61,7 +63,10 @@ export default function CartSheet() {
                 <CartSheetItem key={item.id} item={item} />
               ))}
             </div>
-            <CartSheetSummary subtotal={subtotal} />
+            <CartSheetSummary
+              subtotal={subtotal}
+              onViewCart={() => setOpen(false)}
+            />
           </>
         ) : (
           <CartSheetEmpty />

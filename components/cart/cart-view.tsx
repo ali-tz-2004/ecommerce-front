@@ -2,15 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ShoppingCart, Trash2 } from "lucide-react";
+import { ArrowLeft, ShoppingCart } from "lucide-react";
 
 import Container from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/stores/cart/cart-store";
 import { calculateDiscountPrice } from "../shared/product-card/product-card.utils";
 import ProductCardPrice from "../shared/product-card/product-card-price";
 import QuantitySelector from "../shared/quantity-selector";
 import RemoveButton from "../shared/remove-button";
+import PrimaryActionButton from "../shared/primary-action-button";
 
 export default function CartView() {
   const items = useCartStore((state) => state.items);
@@ -45,7 +45,7 @@ export default function CartView() {
             </p>
 
             <Link href="/products" className="mt-6">
-              <Button>Continue Shopping</Button>
+              <PrimaryActionButton>Continue Shopping</PrimaryActionButton>
             </Link>
           </div>
         </Container>
@@ -72,10 +72,9 @@ export default function CartView() {
                 {cartCount} {cartCount === 1 ? "item" : "items"} in your cart
               </p>
             </div>
-
-            <Button type="button" variant="outline" onClick={clearCart}>
+            <PrimaryActionButton onClick={clearCart}>
               Clear Cart
-            </Button>
+            </PrimaryActionButton>
           </div>
         </div>
 
@@ -163,9 +162,9 @@ export default function CartView() {
                 </div>
               </div>
 
-              <Button className="w-full" size="lg">
+              <PrimaryActionButton className="w-full" size="lg">
                 Checkout
-              </Button>
+              </PrimaryActionButton>
             </div>
           </aside>
         </div>
