@@ -4,6 +4,10 @@ A modern and responsive e-commerce frontend built with **Next.js, TypeScript, Ta
 
 This project was built as a frontend portfolio project with a focus on reusable components, client-side state management, data fetching, responsive UI, and a clean project structure.
 
+## 🌐 Live Demo
+
+[View Live Demo](https://ecommerce-front-livid.vercel.app/)
+
 ## ✨ Preview
 
 ![E-Commerce Store](./public/screenshots/home.png)
@@ -38,6 +42,7 @@ This project was built as a frontend portfolio project with a focus on reusable 
 - [Tailwind CSS](https://tailwindcss.com/)
 - [shadcn/ui](https://ui.shadcn.com/)
 - [Lucide React](https://lucide.dev/)
+- [next-themes](https://github.com/pacocoursey/next-themes)
 
 ### State & Data
 
@@ -54,6 +59,10 @@ This project was built as a frontend portfolio project with a focus on reusable 
 
 - [DummyJSON](https://dummyjson.com/)
 
+### Deployment
+
+- [Vercel](https://vercel.com/)
+
 ## 📁 Project Structure
 
 ```text
@@ -64,8 +73,8 @@ ecommerce-front/
 ├── lib/              # Utilities and shared configuration
 ├── providers/        # Application providers
 ├── services/         # API and data-access logic
-├── stores/            # Zustand stores
-├── types/             # TypeScript types
+├── stores/           # Zustand stores
+├── types/            # TypeScript types
 └── public/            # Static assets and screenshots
 ```
 
@@ -171,3 +180,5 @@ The frontend will then be connected to the custom .NET backend to evolve the pro
 **Ali Taghizadeh**
 
 Frontend Developer focused on React, Next.js, TypeScript, and modern web development.
+
+[GitHub Repository](https://github.com/ali-tz-2004/ecommerce-front)
