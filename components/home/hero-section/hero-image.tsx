@@ -27,7 +27,7 @@ const products = {
 
 export default function HeroImage() {
   return (
-    <div className="relative min-h-120">
+    <div className="relative min-h-120 hidden md:block">
       <div className="absolute left-1/2 top-1/2 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl" />
 
       <div className="absolute left-1/2 top-1/2 z-20 w-[75%] max-w-lg -translate-x-1/2 -translate-y-1/2">

@@ -10,7 +10,7 @@ export default function FeaturedProductsSection() {
   const { data, isLoading } = useFeaturedProducts();
 
   return (
-    <section className="py-16">
+    <section className="py-12 sm:py-16 md:py-24">
       <Container>
         <SectionTitle
           title="Featured Products"

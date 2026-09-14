@@ -39,17 +39,17 @@ export default function ProductsToolbar({
   return (
     <div className="sticky top-16 z-40 bg-background/80 backdrop-blur">
       <Container>
-        <div className="mt-8 flex flex-col gap-4 rounded-xl border border-border p-4 md:flex-row md:items-center md:justify-between">
+        <div className="mt-8 flex flex-col gap-3 rounded-xl border border-border p-3 sm:gap-4 sm:p-4 md:flex-row md:items-center md:justify-between">
           <Input
             value={search}
             onChange={(event) => onSearchChange(event.target.value)}
-            className="max-w-sm"
+            className="w-full md:max-w-sm"
             placeholder="Search products..."
           />
 
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex w-full items-center gap-2 md:w-auto">
             <Select value={sort} onValueChange={onSortChange}>
-              <SelectTrigger className="w-55">
+              <SelectTrigger className="flex-1 md:w-55 md:flex-none">
                 <SelectValue placeholder="Sort by">
                   {sortOptions.find((option) => option.value === sort)?.label}
                 </SelectValue>
@@ -63,8 +63,12 @@ export default function ProductsToolbar({
                 ))}
               </SelectContent>
             </Select>
+
             {hasActiveFilters && (
-              <PrimaryActionButton onClick={onClearFilters}>
+              <PrimaryActionButton
+                onClick={onClearFilters}
+                className="shrink-0"
+              >
                 Clear all
               </PrimaryActionButton>
             )}

@@ -1,7 +1,7 @@
+import ConnectSection from "@/components/home/connect-section";
 import FeaturedProductsSection from "@/components/home/featured-products-section";
 import HeroSection from "@/components/home/hero-section";
 import PopularProductsSection from "@/components/home/popular-products-section";
-import StoreFeaturesSection from "@/components/home/store-features-section";
 
 export default function HomePage() {
   return (
@@ -9,7 +9,7 @@ export default function HomePage() {
       <HeroSection />
       <FeaturedProductsSection />
       <PopularProductsSection />
-      <StoreFeaturesSection />
+      <ConnectSection />
     </>
   );
 }

@@ -10,7 +10,7 @@ export default function PopularProductsSection() {
   const { data, isLoading } = usePopularProducts();
 
   return (
-    <section className="py-16">
+    <section className="py-12 sm:py-16 md:py-24">
       <Container>
         <SectionTitle
           title="Popular Products"
